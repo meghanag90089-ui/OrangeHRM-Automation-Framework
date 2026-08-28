@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -82,9 +83,16 @@ public class PIMPage {
 	}
 	
 	public String getGeneratedEmployeeId() {
-	    return wait.until(
+
+	    WebElement employeeIdField = wait.until(
 	        ExpectedConditions.visibilityOfElementLocated(generatedEmployeeId)
-	    ).getAttribute("value");
+	    );
+
+	    wait.until(driver ->
+	        !employeeIdField.getAttribute("value").isEmpty()
+	    );
+
+	    return employeeIdField.getAttribute("value");
 	}
 	
 	public boolean isEmployeeIdDisplayed(String empId) {
