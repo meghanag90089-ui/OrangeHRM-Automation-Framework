@@ -37,7 +37,7 @@ public class LoginTest extends BaseTest {
 		pimPage.clickEmployeeList();                              
 		pimPage.enterEmployeeId(empId);                          
 		pimPage.clickSearchButton(); 
-		Assert.fail("Temporary failure to test screenshot");
+		//Assert.fail("Temporary failure to test screenshot");
 	    
 	    //Assert.assertTrue(pimPage.isEmployeeIdDisplayed(empId));        // here i have failed bcz i wanted to take screenshot
 	    //Assert.fail("Testing screenshot on failure"); 
