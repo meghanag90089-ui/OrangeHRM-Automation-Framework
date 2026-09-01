@@ -17,15 +17,19 @@ public class ScreenshotUtil {
 	    TakesScreenshot ts = (TakesScreenshot) driver;
 	    File source = ts.getScreenshotAs(OutputType.FILE);
 	    
-	    File screenshotDir = new File("screenshots");
+	    //File screenshotDir = new File("screenshots");
+	    File screenshotDir = new File("target/screenshots");
 
 	    if (!screenshotDir.exists()) {
 	        screenshotDir.mkdirs();
 	    }
 
-	    File destination = new File(
+	    /*File destination = new File(
 	        "screenshots/" + testName + ".png"
-	    );
+	    );*/
+	    File destination = new File(
+	    	    "target/screenshots/" + testName + ".png"
+	    	);
 
 	    try {
 	    	Files.copy(
