@@ -32,14 +32,14 @@ public class LoginTest extends BaseTest {
 	    pimPage.enterLastName(lastName);
 	    
 	    String empId = pimPage.getGeneratedEmployeeId();
-	    System.out.println("Captured Employee ID: " + empId);    
+	    //System.out.println("Captured Employee ID: " + empId);    
 		pimPage.clickSaveButton();                               
 		pimPage.clickEmployeeList();                              
 		pimPage.enterEmployeeId(empId);                          
 		pimPage.clickSearchButton(); 
 		//Assert.fail("Temporary failure to test screenshot");
 	    
-	    //Assert.assertTrue(pimPage.isEmployeeIdDisplayed(empId));        // here i have failed bcz i wanted to take screenshot
+	    Assert.assertTrue(pimPage.isEmployeeIdDisplayed(empId));        // here i have failed bcz i wanted to take screenshot
 	    //Assert.fail("Testing screenshot on failure"); 
 
 		

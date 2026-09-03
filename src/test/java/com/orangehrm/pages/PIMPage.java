@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PIMPage {
 	
-	WebDriver driver;
-	WebDriverWait wait;
+	private WebDriver driver;
+	private WebDriverWait wait;
 	
 	private By pimMenu = By.xpath("//a[contains(@href,'viewPimModule')]");
 	private By addEmployee = By.linkText("Add Employee");

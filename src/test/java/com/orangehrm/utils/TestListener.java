@@ -30,7 +30,8 @@ import com.orangehrm.base.BaseTest;
 public class TestListener extends TestListenerAdapter {
 
     static ExtentReports extent;
-    static ExtentTest test;
+    //static ExtentTest test;
+    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     static {
         ExtentSparkReporter spark =
@@ -43,19 +44,21 @@ public class TestListener extends TestListenerAdapter {
     @Override
     public void onTestStart(ITestResult result) {
 
-        test = extent.createTest(result.getName());
+        //test = extent.createTest(result.getName());
+    	test.set(extent.createTest(result.getName()));
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
 
-        test.pass("Test Passed");
+        test.get().pass("Test Passed");
+        test.remove();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
 
-        test.fail(result.getThrowable());
+        test.get().fail(result.getThrowable());
 
         Object testClass = result.getInstance();
         BaseTest baseTest = (BaseTest) testClass;
@@ -67,14 +70,16 @@ public class TestListener extends TestListenerAdapter {
                 );
 
         if (screenshotPath != null) {
-            test.addScreenCaptureFromPath(screenshotPath);
+            test.get().addScreenCaptureFromPath(screenshotPath);
         }
+        test.remove();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
 
-        test.skip("Test Skipped");
+        test.get().skip("Test Skipped");
+        test.remove();
     }
 
     @Override
